@@ -44,7 +44,7 @@ public final class ProgressWindow implements DownloadServiceListener {
 
 	private void create() {
 		try {
-			// tentar deixar a aplicação com aspecto nativo do sistema operacional
+			// tentar deixar a aplicacao com aspecto nativo do sistema operacional
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Throwable t) {
 			t.printStackTrace();
