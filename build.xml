@@ -6,6 +6,10 @@
 	<property name="storepass" value="12345678" />
 	<property name="tsaurl" value="http://timestamp.comodoca.com/rfc3161" />
 
+	<path id="classpath">
+        <fileset dir="lib" includes="**/*.jar"/>
+    </path>
+
 	<target name="make-all">
 		<antcall target="make-jrprint-to-pdf" />
 		<antcall target="make-jasper" />
@@ -23,6 +27,12 @@
 			<attribute name="Main-Class" value="br.com.staroski.jasper.JRPrint2Pdf" />
 			<attribute name="Class-Path" value=". jasper/commons-collections-3.2.1.jar  jasper/commons-digester-2.1.jar jasper/commons-logging-1.1.1.jar jasper/iText-2.1.7.js2.jar jasper/jasperreports-5.6.0.jar" />
 		</manifest>
+		<javac srcdir="src" destdir="bin" classpathref="classpath"/>
+		<copy todir="bin">
+			<fileset dir="src">
+				<include name="*.png" />
+			</fileset>
+		</copy>
 		<jar jarfile="dist/jrprint-to-pdf.jar" includes="**/*.*" basedir="bin" manifest="MANIFEST.MF" />
 		<signjar destDir="dist" keystore="${keystore}" alias="${alias}" storepass="${storepass}" tsaurl="${tsaurl}" preservelastmodified="true">
 			<path>
